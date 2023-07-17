@@ -1,1 +1,8 @@
-/target
+# Ifnore node_modules
+node_modules/
+
+# Ignore any log files
+*.log
+
+# Ignore any environment config files
+*.env
