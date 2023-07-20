@@ -1,9 +1,10 @@
 {
   "name": "newsscraper",
   "version": "1.0.0",
-  "description": "Website that scraps news from different newspaper and compares them.",
+  "description": "Website that scraps news from different newspapers and compares them.",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
