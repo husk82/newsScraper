@@ -7,7 +7,7 @@ const port = 3000
 app.get('/', async (req: Request, res: Response) => {
 	try {
 		const newsItems: NewsItem[] = await scrapTitle()
-		res.status(200).send(newsItems)
+		res.status(200).send(JSON.stringify(newsItems, null, 2))
 	} catch (error) {
 		console.error('Error', error)
 		res.status(500).send('Internal Server Error')
