@@ -1,14 +1,22 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function ListGroup() {
-  const items = ["Car", "Dog", "Elephant", "Deer"];
+  const [listOfPosts, setListOfPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/").then((response) => {
+      setListOfPosts(response.data);
+    });
+  }, []);
+
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
     <>
       <h1>List</h1>
       <ul className="list-group">
-        {items.map((item, index) => (
+        {listOfPosts.map((item, index) => (
           <li
             className={
               selectedIndex === index
