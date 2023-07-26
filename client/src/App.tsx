@@ -1,19 +1,27 @@
 import ListGroup from "./components/ListGroup";
-import axios from "axios";
-import { useEffect } from "react";
+import axios, { AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
+
+type Post = {
+  headline: string;
+  link: string;
+};
 
 function App() {
+  const [posts, setPosts] = useState<Post[]>([]);
+
   useEffect(() => {
-    axios.get("http://localhost:3000/").then((response) => {
-      console.log(response.data);
+    axios.get("http://localhost:3000/").then((response: AxiosResponse<Post[]>) => {
+      setPosts([...response.data]);
     });
   }, []);
 
   return (
     <div>
-      <ListGroup />
+      <ListGroup posts={posts} />
     </div>
   );
 }
 
 export default App;
+

@@ -1,14 +1,12 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function ListGroup() {
-  const [listOfPosts, setListOfPosts] = useState([]);
+type Post = {
+  headline: string;
+  link: string;
+};
 
-  useEffect(() => {
-    axios.get("http://localhost:3000/").then((response) => {
-      setListOfPosts(response.data);
-    });
-  }, []);
+function ListGroup({ posts }: { posts: Post[] }) {
+  const [listOfPosts] = useState(posts ?? []);
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
@@ -23,12 +21,12 @@ function ListGroup() {
                 ? "list-group-item active ?"
                 : "list-group-item"
             }
-            key={item}
+            key={index}
             onClick={() => {
               setSelectedIndex(index);
             }}
           >
-            {item}
+            {item?.headline}
           </li>
         ))}
       </ul>
