@@ -1,7 +1,11 @@
 import express, { Request, Response } from 'express'
+import cors from 'cors'
 import { scrapTitle, NewsItem } from './lib/scrap'
 
 const app = express()
+app.use(cors())
+app.use(express.json())
+
 const port = 3000
 
 app.get('/', async (req: Request, res: Response) => {
