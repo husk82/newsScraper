@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 
-const url = 'https://globalnews.ca/';
+const url = 'https://cnn.com/';
 
-export async function scrapTitle(): Promise<string[]> {
+export async function cnnScrapTitle(): Promise<string[]> {
 	let titles: string[] = [];
 	try {
 		const response = await axios.get(url);
@@ -11,7 +11,7 @@ export async function scrapTitle(): Promise<string[]> {
 			const html: string = response.data;
 			const $ = load(html);
 			// Performing scraping operations
-			$('.c-posts__headlineText').each((index, element) => {
+			$('div.container_lead-package__headline span[data-editable="headline"]').each((index, element) => {
 				const title: string = $(element).text();
 				titles.push(title);
 			})
@@ -23,5 +23,5 @@ export async function scrapTitle(): Promise<string[]> {
 }
 
 module.exports = {
-	scrapTitle
+	cnnScrapTitle
 }

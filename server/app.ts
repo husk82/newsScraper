@@ -8,8 +8,8 @@ app.use(express.json());
 app.use(cors());
 
 // Routers
-const postRouter = require('./routes/posts');
-app.use("/", postRouter);
+const homeRouter = require('./routes/home');
+app.use("/", homeRouter);
 
 
 app.listen(port, () => {
