@@ -2,17 +2,29 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function ListGroup() {
-  const [listOfPosts, setListOfPosts] = useState([]);
+  const [loading, setLoading] = useState<boolean>(true)
+  const [listOfPosts, setListOfPosts] = useState<string[]>([]);
 
-  useEffect(() => {
-    axios.get("http://localhost:3000/").then((response) => {
-      setListOfPosts(response.data);
-    });
+  const fetchPosts = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/");
+      setListOfPosts(res.data);
+      setLoading(false)
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      setLoading(false)
+    }
+  };
+
+    useEffect(() => {
+    fetchPosts();
   }, []);
+
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
-  return (
+  if (loading) return <h1>Loading...</h1>
+  else return (
     <>
       <h1>List</h1>
       <ul className="list-group">
