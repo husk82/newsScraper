@@ -20,9 +20,7 @@ router.get("/", async (req: Request, res: Response) => {
       similarityThreshold
     );
 
-    console.log(similarTitles);
-
-    res.status(200).json(cnnTitles);
+    res.status(200).json(similarTitles);
   } catch (error) {
     console.error("Error", error);
     res.status(500).send("Internal Server Error");
