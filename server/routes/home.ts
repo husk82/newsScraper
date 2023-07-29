@@ -1,7 +1,7 @@
 import { globalScrapTitle } from "../lib/globalNewsScrap";
 import { cnnScrapTitle } from "../lib/cnnScrap";
 import express, { Request, Response } from "express";
-import findSimilarTitles from "../lib/nGramFuzzyMatcher";
+import findSimilarTitles from "../lib/wordMatcher";
 
 const router = express.Router();
 
@@ -12,11 +12,9 @@ router.get("/", async (req: Request, res: Response) => {
 
     // Threshold for similarity and ngram (Can be adjusted as necessary)
     const similarityThreshold: number = 0.2;
-    const ngram: number = 3;
     const similarTitles = await findSimilarTitles(
       globalTitles,
       cnnTitles,
-      ngram,
       similarityThreshold
     );
 
