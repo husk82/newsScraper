@@ -18,7 +18,13 @@ router.get("/", async (req: Request, res: Response) => {
       similarityThreshold
     );
 
-    res.status(200).json(similarTitles);
+    const combinedTitles = {
+      globalTitles: globalTitles,
+      cnnTitles: cnnTitles,
+      similarTitles: similarTitles,
+    };
+
+    res.status(200).json(combinedTitles);
   } catch (error) {
     console.error("Error", error);
     res.status(500).send("Internal Server Error");
