@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function ListGroup() {
+function AllTitlesGroup() {
   const [loading, setLoading] = useState<boolean>(true);
   const [listOfPosts, setListOfPosts] = useState<string[]>([]);
 
@@ -26,7 +26,7 @@ function ListGroup() {
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-bold mb-4">List of Posts</h1>
         <div className="grid gap-4 grid-cols-2">
-          {listOfPosts.map((item, index) => (
+          {listOfPosts.map((item) => (
             <p className="text-gray-800">{item}</p>
           ))}
         </div>
@@ -34,4 +34,4 @@ function ListGroup() {
     );
 }
 
-export default ListGroup;
+export default AllTitlesGroup;
