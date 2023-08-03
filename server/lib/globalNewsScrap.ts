@@ -5,6 +5,7 @@ const url = "https://globalnews.ca/";
 
 export async function globalScrapTitle(): Promise<string[]> {
   let titles: string[] = [];
+  let links: string[] = [];
   try {
     const response = await axios.get(url);
     if (response.status === 200) {
@@ -14,8 +15,13 @@ export async function globalScrapTitle(): Promise<string[]> {
       $(".c-posts__headlineText").each((index, element) => {
         const title: string = $(element).text();
         titles.push(title);
+        const link: string | undefined = $(element).attr("href");
+        if (link) {
+          links.push(link);
+        }
       });
     }
+    console.log(links);
   } catch (error) {
     console.error("Error: ", error);
   }

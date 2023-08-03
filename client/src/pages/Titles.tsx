@@ -23,13 +23,24 @@ function Titles() {
     fetchPosts();
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading)
+    return (
+      <div className="pt-16">
+        <h1>Loading...</h1>
+      </div>
+    );
   else
     return (
-      <>
-        <ListGroupTitles items={listGlobalNews} heading="Global News" />
-        <ListGroupTitles items={listGlobalNews} heading="CNN News" />
-      </>
+      <div className="pt-16">
+        <div className="flex flex-col md:flex-row justify-center gap-4">
+          <div className="flex flex-col">
+            <ListGroupTitles items={listGlobalNews} heading="Global News" />
+          </div>
+          <div className="flex flex-col gap-4">
+            <ListGroupTitles items={listGlobalNews} heading="CNN News" />
+          </div>
+        </div>
+      </div>
     );
 }
 

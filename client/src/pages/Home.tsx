@@ -3,7 +3,9 @@ import SimilarTitles from "../components/SimilarTitles";
 function Home() {
   return (
     <div>
-      <SimilarTitles />
+      <div className="pt-16">
+        <SimilarTitles />
+      </div>
     </div>
   );
 }
